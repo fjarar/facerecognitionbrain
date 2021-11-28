@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Clarifai from "clarifai";
 import Particles from "react-particles-js";
+import SignIn from "./components/SingIn/SignIn";
 import "./App.css";
 import Navigation from "./components/Navigation/Navigation";
 import Logo from "./components/Logo/Logo";
@@ -70,6 +71,7 @@ class App extends Component {
       <div className="App">
         <Particles className="particles" params={particlesOptions} />
         <Navigation />
+        <SignIn />
         <Logo />
         <Rank />
         <ImageLinkForm
