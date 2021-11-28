@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Clarifai from "clarifai";
 import Particles from "react-particles-js";
 import SignIn from "./components/SingIn/SignIn";
+import Register from "./components/Register/Register";
 import "./App.css";
 import Navigation from "./components/Navigation/Navigation";
 import Logo from "./components/Logo/Logo";
@@ -76,17 +77,21 @@ class App extends Component {
       <div className="App">
         <Particles className="particles" params={particlesOptions} />
         <Navigation onRouteChange={this.onRouteChange} />
-        { this.state.route === 'signin' 
-          ? <SignIn onRouteChange={this.onRouteChange}/>
-          : <div>
-              {/*<Logo />*/}
-              <Rank />
-              <ImageLinkForm
-                onInputChange={this.onInputChange}
-                onButtonSubmit={this.onButtonSubmit}
-              />
-              <FaceRecognition box={this.state.box} imageUrl={this.state.imageUrl} />
-            </div>
+        { this.state.route === 'home' 
+          ? <div>
+          {/*<Logo />*/}
+          <Rank />
+          <ImageLinkForm
+            onInputChange={this.onInputChange}
+            onButtonSubmit={this.onButtonSubmit}
+          />
+          <FaceRecognition box={this.state.box} imageUrl={this.state.imageUrl} />
+        </div>          
+          : (
+            this.state.route === 'signin' 
+            ? <SignIn onRouteChange={this.onRouteChange}/>
+            : <Register onRouteChange={this.onRouteChange} />
+          )          
         }
       </div>
     );
