@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Clarifai from "clarifai";
-import Particles from "react-particles-js";
+import Particles from "react-tsparticles";
 import SignIn from "./components/SingIn/SignIn";
 import Register from "./components/Register/Register";
 import "./App.css";
@@ -20,7 +20,37 @@ const particlesOptions = {
       value: 100,
       density: {
         enable: true,
-        value_area: 800,
+        area: 800,
+      },
+    },
+    links: {
+      color: "#ffffff",
+      distance: 150,
+      enable: true,
+      opacity: 0.5,
+      width: 1,
+    },
+    move: {
+      direction: "none",
+      enable: true,
+      outMode: "bounce",
+      random: false,
+      speed: 1,
+      straight: false,
+    },    
+  },
+  interactivity: {
+    events: {      
+      onHover: {
+        enable: true,
+        mode: "repulse",
+      },
+      resize: true,
+    },
+    modes: {
+      repulse: {
+        distance: 100,
+        duration: 0.4,
       },
     },
   },
@@ -79,13 +109,22 @@ class App extends Component {
 
   render() {
     const {isSignedIn, box, route, imageUrl}=this.state;
+    const particlesInit = (main) => {
+      console.log(main);
+  
+      // you can initialize the tsParticles instance (main) here, adding custom shapes or presets
+    };
+  
+    const particlesLoaded = (container) => {
+      console.log(container);
+    };
     return (
       <div className="App">
-        <Particles className="particles" params={particlesOptions} />
+        <Particles className="particles" init={particlesInit} loaded={particlesLoaded} params={particlesOptions} />
         <Navigation isSignedIn={isSignedIn} onRouteChange={this.onRouteChange} />
         { route === 'home' 
           ? <div>
-          {/*<Logo />*/}
+          <Logo />
           <Rank />
           <ImageLinkForm
             onInputChange={this.onInputChange}
