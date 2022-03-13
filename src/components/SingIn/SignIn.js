@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 class SignIn extends React.Component {
   constructor(props) {
@@ -9,7 +9,7 @@ class SignIn extends React.Component {
     }
   }
 
-  onEmailChange= (event) => {
+  onEmailChange = (event) => {
     this.setState({signInEmail: event.target.value})
   }
 
@@ -23,24 +23,23 @@ class SignIn extends React.Component {
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
         email: this.state.signInEmail,
-        password: this.state.signInPassword
+        password: this.state.signInPassword        
       })
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data === 'success'){
-          this.props.onRouteChange('home')
-        }
-      })
-    
+    })       
+      .then(response => response.json())
+      .then(data => {
+          if (data === 'success'){
+            this.props.onRouteChange('home');
+          }
+        })
   }
 
   render(){
-    const { onRouteChange } = this.props
+    const { onRouteChange } = this.props;
     return (
       <article className="br3 ba b--black-10 mv4 w-100 w-50-m w-25-l mw6 shadow-5 center">
         <main className="pa4 black-80">
-          <form className="measure">
+          <div className="measure">
             <fieldset id="sign_up" className="ba b--transparent ph0 mh0">
               <legend className="f1 fw6 ph0 mh0">Sign In</legend>
               <div className="mt3">
@@ -83,7 +82,7 @@ class SignIn extends React.Component {
                 Register
               </p>
             </div>
-          </form>
+          </div>
         </main>
       </article>
     );
